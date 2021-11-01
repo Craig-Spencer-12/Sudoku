@@ -65,18 +65,18 @@ func initializeBoard() {
 }
 
 func printBoard(board [9][9]int) {
-	for l := 0; l < 73; l++{
+	for l := 0; l < 73; l++ {
 		fmt.Print("-")
 	}
 	fmt.Print("\n")
 
-	for i := range board{
+	for i := range board {
 		fmt.Print("|   ")
-		for j := range board[i]{
+		for j := range board[i] {
 			fmt.Printf("%v   |   ", board[i][j])
 		}
 		fmt.Print("\n")
-		for l := 0; l < 73; l++{
+		for l := 0; l < 73; l++ {
 			fmt.Print("-")
 		}
 		fmt.Print("\n")
@@ -86,12 +86,12 @@ func printBoard(board [9][9]int) {
 func findPossible(n int) *[9][9]int {
 	tempBoard := GameBoard
 
-	for i := range tempBoard{
-		for j := range tempBoard[i]{
+	for i := range tempBoard {
+		for j := range tempBoard[i] {
 			if tempBoard[i][j] == n {
 				deleteRow(&tempBoard, i)
 				deleteCol(&tempBoard, j)
-				deleteBox(&tempBoard, (i/3) * 3, (j/3) * 3)
+				deleteBox(&tempBoard, (i/3)*3, (j/3)*3)
 			}
 		}
 	}
@@ -112,8 +112,8 @@ func deleteCol(board *[9][9]int, n int) {
 }
 
 func deleteBox(board *[9][9]int, x int, y int) {
-	for i := x; i < x + 3; i++ {
-		for j := y; j < y + 3; j++ {
+	for i := x; i < x+3; i++ {
+		for j := y; j < y+3; j++ {
 			board[i][j] = -1
 		}
 	}
@@ -126,8 +126,8 @@ func fillSlots(board *[9][9]int, n int) {
 
 	for i := 0; i < 3; i++ {
 		for j := 0; j < 3; j++ {
-			for k := i * 3; k < i * 3 + 3; k++ {
-				for l := j * 3; l < j * 3 + 3; l++ {
+			for k := i * 3; k < i*3+3; k++ {
+				for l := j * 3; l < j*3+3; l++ {
 					if board[k][l] == 0 {
 						numZeros++
 						locationX = k
@@ -150,8 +150,8 @@ func fillSlots(board *[9][9]int, n int) {
 
 func countZeros(board *[9][9]int) int {
 	count := 0
-	for i := range board{
-		for j := range board[i]{
+	for i := range board {
+		for j := range board[i] {
 			if board[i][j] == 0 {
 				count++
 			}
@@ -159,6 +159,3 @@ func countZeros(board *[9][9]int) int {
 	}
 	return count
 }
-
-
-//	cd code/src/github.com/Craig-Spencer/sudoku
